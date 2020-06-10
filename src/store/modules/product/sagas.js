@@ -6,7 +6,7 @@ import { getProductSuccess } from './actions';
 
 function* getProduct({ style }) {
   const response = yield call(api.get);
-  const product = response.data.find(
+  const product = yield response.data.find(
     (productData) => productData.style === style
   );
 

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import api from '../../service/api';
 import { getProductRequest } from '../../store/modules/product/actions';
@@ -13,7 +14,7 @@ import {
   DescriptionProduct,
 } from './syles';
 
-export default function Catalog() {
+export default function Catalog({ setProduct }) {
   const [products, setProducts] = useState([]);
   const dispatch = useDispatch();
 
@@ -34,8 +35,14 @@ export default function Catalog() {
       <BoxProducts>
         <Products>
           {products.map((product) => (
-            <li className="product__list">
-              <Link to="/product" onClick={() => getProduct(product.style)}>
+            <li className="product__list" key={product.code_color}>
+              <Link
+                to={`/products/${product.name}`}
+                onClick={() => {
+                  getProduct(product.style);
+                  setProduct(product);
+                }}
+              >
                 <BoxImage>
                   <img
                     src={product.image}
@@ -59,3 +66,7 @@ export default function Catalog() {
     </Container>
   );
 }
+
+Catalog.propTypes = {
+  setProduct: PropTypes.func.isRequired,
+};

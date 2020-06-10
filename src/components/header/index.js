@@ -8,6 +8,7 @@ import { Container, Content, Logo, BoxButtons } from './styles';
 
 export default function Header() {
   const cartSize = useSelector((state) => state.cart.length);
+
   return (
     <Container>
       <Content>
@@ -18,7 +19,7 @@ export default function Header() {
           <button type="button" className="boxbuttons__button">
             <FiSearch size={20} />
           </button>
-          <button button type="button" className="boxbuttons__button">
+          <button type="button" className="boxbuttons__button">
             <span className="boxbuttons__button--cont">{cartSize}</span>
             <FiShoppingBag size={20} />
           </button>
