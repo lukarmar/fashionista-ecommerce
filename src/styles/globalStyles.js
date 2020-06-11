@@ -15,7 +15,22 @@ export default createGlobalStyle`
   html, body, #root {
     height: 100%;
     background: #f9f9f9;
-  }
+
+    .visible-enter {
+      right: -29%;
+    }
+    .visible-enter-active {
+      right: 0;
+      transition: right 300ms, right 300ms;
+    }
+    .visible-exit {
+      right: 0;
+    }
+    .visible-exit-active {
+      right: -29%;
+      transition: right 300ms, right 300ms;
+    }
+}
 
   body {
     -webkit-font-smoothing: antialiased;

@@ -1,15 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { CSSTransition } from 'react-transition-group';
 
 import DataProduct from '../../components/dataProduct';
-import Cart from '../../components/cart'
+import Cart from '../../components/cart';
 
-import { Container, BoxProducts } from './styles';
+import { Container, BoxProducts, ShadowScrenn } from './styles';
 
-export default function Product({ product }) {
+export default function Product({ product, setVisibleCart, visibleCart }) {
   return (
     <Container>
-      <Cart />
+      {visibleCart && <ShadowScrenn />}
+      <CSSTransition
+        in={visibleCart}
+        timeout={300}
+        classNames="visible"
+        unmountOnExit
+      >
+        <Cart setVisibleCart={setVisibleCart} visibleCart={visibleCart} />
+      </CSSTransition>
       {!product ? (
         'Aguarde'
       ) : (
@@ -22,7 +31,9 @@ export default function Product({ product }) {
 }
 
 Product.propTypes = {
-  product: PropTypes.object
+  product: PropTypes.object, //eslint-disable-line
+  setVisibleCart: PropTypes.func.isRequired,
+  visibleCart: PropTypes.bool.isRequired,
 };
 
 Product.defaultProps = {

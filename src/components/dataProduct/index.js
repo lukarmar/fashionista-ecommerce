@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Ink from 'react-ink';
 
@@ -11,7 +11,7 @@ import {
 } from './styles';
 
 export default function DataProduct({ product }) {
-  const [sizeSelect, setSizeSelect] = useState('')
+  const [sizeSelect, setSizeSelect] = useState('');
 
   return (
     <Products>
@@ -34,21 +34,28 @@ export default function DataProduct({ product }) {
         </BoxPrice>
         <span className="product__description--choice">Escolha o tamanho</span>
         <BoxSize>
-          {product.sizes.map( dataSize  => (
-            dataSize.available &&
-              <button type="button" name={dataSize.size}
-                className={`product__button-size ${sizeSelect === dataSize.sku  ?
-                  'product__button-size--selected' : ''}`}
-                onClick={()=>setSizeSelect(dataSize.sku)}
+          {product.sizes.map(
+            (dataSize) =>
+              dataSize.available && (
+                <button
+                  type="button"
+                  name={dataSize.size}
+                  className={`product__button-size ${
+                    sizeSelect === dataSize.sku
+                      ? 'product__button-size--selected'
+                      : ''
+                  }`}
+                  onClick={() => setSizeSelect(dataSize.sku)}
                 >
-                {dataSize.size}
-                <Ink/>
-              </button>
-          ))}
+                  {dataSize.size}
+                  <Ink />
+                </button>
+              )
+          )}
         </BoxSize>
         <button type="button" className="product__description--button-add">
           Adicionar à Sacola
-          <Ink/>
+          <Ink />
         </button>
       </BoxDescriptionProduct>
     </Products>

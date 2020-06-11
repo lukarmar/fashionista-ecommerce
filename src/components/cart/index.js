@@ -1,59 +1,95 @@
 import React from 'react';
-import {FaArrowLeft} from 'react-icons/fa'
+import { FaArrowLeft, FaMinus, FaPlus } from 'react-icons/fa';
+import Ink from 'react-ink';
+import PropType from 'prop-types';
 
-import { Container } from './styles';
+import {
+  Container,
+  CartContainer,
+  DescriptioCart,
+  Header,
+  ProductCart,
+  ProductCartItem,
+  BoxImage,
+  BoxDescriptionProduct,
+  BoxInformationProduct,
+  BoxAmount,
+  BoxPrice,
+  Footer,
+} from './styles';
 
-export default function Cart() {
+export default function Cart({ setVisibleCart, visibleCart }) {
   return (
     <Container>
-      <BoxCart>
+      <CartContainer visibleCart={visibleCart}>
         <Header>
-          <FaArrowLeft size={22} />
+          <button
+            type="button"
+            className="cart__header--button"
+            onClick={() => setVisibleCart(false)}
+          >
+            <FaArrowLeft size={22} />
+            <Ink />
+          </button>
           <span className="cart__length">Sacola (0)</span>
         </Header>
-        <BodyCart>
-          <ProductCart>
-            <BoxImage>
-              <img
-                src={product.image}
-                alt={product.name}
-                className="product__image"
-              />
-            </BoxImage>
-            <BoxDescriptionProduct>
-        <strong className="product__description--title">{product.name}</strong>
-        <BoxPrice>
-          <span className="product__description--price">
-            {product.actual_price}
-          </span>
-          <span className="product__description--parcel">
-            em até preço {product.installments}
-          </span>
-        </BoxPrice>
-        <span className="product__description--choice">Escolha o tamanho</span>
-        <BoxSize>
-          {product.sizes.map( dataSize  => (
-            dataSize.available &&
-              <button type="button" name={dataSize.size}
-                className={`product__button-size ${sizeSelect === dataSize.sku  ?
-                  'product__button-size--selected' : ''}`}
-                onClick={()=>setSizeSelect(dataSize.sku)}
-                >
-                {dataSize.size}
-                <Ink/>
-              </button>
-          ))}
-        </BoxSize>
-        <button type="button" className="product__description--button-add">
-          Adicionar à Sacola
-          <Ink/>
-        </button>
-      </BoxDescriptionProduct>
-          </ProductCart>
-        </BodyCart>
-      </BoxCart>
+        <ProductCart>
+          <ProductCartItem>
+            <DescriptioCart>
+              <BoxImage>
+                <img
+                  src="https://d3l7rqep7l31az.cloudfront.net/images/products/20002581_614_catalog_1.jpg?1459536611"
+                  alt="produto"
+                  className="product__image"
+                />
+              </BoxImage>
+              <BoxDescriptionProduct>
+                <BoxInformationProduct>
+                  <strong className="product__description--title">
+                    BATA DECOTE FLUID
+                  </strong>
+                  <span className="product__description--size">Tam.: GG</span>
+                  <BoxAmount>
+                    <button type="button" className="boxAmount__button">
+                      <FaMinus size={12} />
+                      <Ink />
+                    </button>
+                    <span className="boxAmount__number-amount">1</span>
+                    <button type="button" className="boxAmount__button">
+                      <FaPlus size={12} />
+                      <Ink />
+                    </button>
+                  </BoxAmount>
+                </BoxInformationProduct>
+                <BoxPrice>
+                  <strong className="product__description--price">
+                    R$ 149,90
+                  </strong>
+                  <span className="product__description--parcel">
+                    3x R$ 49,97
+                  </span>
+                </BoxPrice>
+              </BoxDescriptionProduct>
+            </DescriptioCart>
+            <button
+              type="button"
+              className="product__description--button-remove"
+            >
+              Remover item
+              <Ink />
+            </button>
+          </ProductCartItem>
+        </ProductCart>
+
+        <Footer>
+          <strong>Subtotal - R$ 149,90</strong>
+        </Footer>
+      </CartContainer>
     </Container>
   );
 }
 
-
+Cart.propTypes = {
+  setVisibleCart: PropType.func.isRequired,
+  visibleCart: PropType.bool.isRequired,
+};

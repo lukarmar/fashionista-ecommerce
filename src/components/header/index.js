@@ -6,7 +6,7 @@ import { FiSearch, FiShoppingBag } from 'react-icons/fi';
 import logo from '../../assets/logo/logoLink.svg';
 import { Container, Content, Logo, BoxButtons } from './styles';
 
-export default function Header() {
+export default function Header({ setVisibleCart }) {
   const cartSize = useSelector((state) => state.cart.length);
 
   return (
@@ -19,7 +19,11 @@ export default function Header() {
           <button type="button" className="boxbuttons__button">
             <FiSearch size={20} />
           </button>
-          <button type="button" className="boxbuttons__button">
+          <button
+            type="button"
+            className="boxbuttons__button"
+            onClick={() => setVisibleCart(true)}
+          >
             <span className="boxbuttons__button--cont">{cartSize}</span>
             <FiShoppingBag size={20} />
           </button>

@@ -4,7 +4,7 @@ export const Products = styled.div`
   width: 100%;
   display: flex;
   margin-top: 56px;
-  z-index:1;
+  z-index: 1;
 `;
 
 export const BoxImage = styled.figure`
@@ -79,7 +79,6 @@ export const BoxSize = styled.div`
     outline: none;
     border-radius: 4px;
     margin-right: 8px;
-
 
     display: flex;
     justify-content: center;
