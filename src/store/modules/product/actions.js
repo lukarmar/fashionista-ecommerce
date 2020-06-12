@@ -1,13 +1,25 @@
-export function getProductRequest(product) {
+export function getProductRequest() {
   return {
     type: 'product>>GET_PRODUCT_RESQUEST',
-    product,
   };
 }
 
-export function getProductSuccess(product) {
+export function getProductSuccess(products) {
   return {
     type: 'product>>GET_PRODUCT_SUCCESS',
-    product,
+    products,
+  };
+}
+
+export function getSearchProductSuccess(search) {
+  return {
+    type: 'product>>GET_SEARCH_SUCCESS',
+    search,
+  };
+}
+
+export function deleteStateSeach() {
+  return {
+    type: 'product>>DELETE_STATE_SEARCH',
   };
 }

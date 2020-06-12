@@ -9,7 +9,7 @@ export const Container = styled.div`
   box-shadow: 0px 2px 3px 0px rgba(48, 50, 50, 0.05);
 
   position: fixed;
-  z-index: 1;
+  z-index: 11;
 `;
 export const Content = styled.div`
   width: 100%;

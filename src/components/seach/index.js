@@ -1,12 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { FaArrowLeft } from 'react-icons/fa';
 import Ink from 'react-ink';
 import PropType from 'prop-types';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { searchProducts } from '../../util/searchProducts';
-import { getProductRequest } from '../../store/modules/product/actions';
+import {
+  getSearchProductSuccess,
+  getProductRequest,
+  deleteStateSeach,
+} from '../../store/modules/product/actions';
 
 import {
   Container,
@@ -29,7 +32,8 @@ export default function Search({
 }) {
   const products = useSelector((state) => state.product);
   const [captureValue, setCaptureValue] = useState('');
-  const [productData, setProductData] = useState([]);
+  const [keyCode, setKeyCode] = useState('');
+  const inputRef = useRef(null);
 
   const dispatch = useDispatch();
 
@@ -38,12 +42,12 @@ export default function Search({
   }, []); //eslint-disable-line
 
   useEffect(() => {
-    if (captureValue === '') {
-      setProductData([]);
+    if (keyCode === 8 && captureValue === '') {
+      dispatch(deleteStateSeach());
       return;
     }
-    setProductData(searchProducts(captureValue, products[0]));
-  }, [captureValue, products]);
+    dispatch(getSearchProductSuccess(captureValue));
+  }, [captureValue]); //eslint-disable-line
 
   return (
     <Container>
@@ -61,17 +65,20 @@ export default function Search({
         </Header>
         <BoxInputSearch>
           <input
+            ref={inputRef}
+            onKeyDown={(e) => setKeyCode(e.keyCode)}
             name="search"
             className="boxInputSearch__input"
             placeholder="Buscar por produto..."
             value={captureValue}
-            onChange={(e) => setCaptureValue(e.target.value)}
-            autoComplete={false}
-            autoCorrect={false}
+            onChange={(e) => {
+              setCaptureValue(e.target.value);
+            }}
+            autoComplete="off"
           />
         </BoxInputSearch>
         <ProductSearch>
-          {productData.map((data) => (
+          {products.searchData.map((data) => (
             <Link
               to={`/products/${data.name}`}
               onClick={() => {
@@ -83,7 +90,11 @@ export default function Search({
                 <DescriptioSearch>
                   <BoxImage>
                     <img
-                      src={data.image}
+                      src={
+                        !data.image
+                          ? 'https://via.placeholder.com/470x594/FFFFFF/?text=Imagem+Indisponível'
+                          : data.image
+                      }
                       alt={data.name}
                       className="product__image"
                     />

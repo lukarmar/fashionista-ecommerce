@@ -14,10 +14,19 @@ export const CartContainer = styled.div`
   position: relative;
   width: 28%;
   height: 100%;
+  overflow-y: auto;
+
   background: #f9f9f9;
   box-shadow: -1px 0px 2px 0px rgba(0, 0, 0, 1);
-  overflow-y: auto;
   display: flex;
+
+  .cart__empty {
+    position: absolute;
+    top: 40%;
+    left: 28%;
+    color: #a7a7a7;
+    font-size: 1rem;
+  }
 `;
 
 export const Header = styled.div`
@@ -48,7 +57,8 @@ export const Header = styled.div`
 
 export const ProductCart = styled.div`
   position: relative;
-  padding: 68px 18px 0 18px;
+  width: auto;
+  padding: 68px 18px 108px 18px;
 `;
 
 export const ProductCartItem = styled.div`
@@ -58,12 +68,16 @@ export const ProductCartItem = styled.div`
   box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.08);
   margin-bottom: 10px;
 
+  & + :last-child {
+    padding-bottom: 65px;
+  }
+
   .product__description--button-remove {
     position: relative;
     background: transparent;
     border: none;
 
-    width: 25%;
+    width: 30%;
     font-size: 0.8rem;
     color: #cf3838;
   }

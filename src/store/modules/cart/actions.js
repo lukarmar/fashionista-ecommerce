@@ -22,7 +22,7 @@ export function updateAmountRequest(amount, sku) {
   };
 }
 
-export function updateAmountSuccess(sku, amount) {
+export function updateAmountSuccess(amount, sku) {
   return {
     type: 'cart>>UPDATE_AMOUNT_SUCCESS',
     sku,

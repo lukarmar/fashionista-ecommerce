@@ -32,7 +32,11 @@ export default function DataProduct({ product }) {
     <Products>
       <BoxImage>
         <img
-          src={product.image}
+          src={
+            !product.image
+              ? 'https://via.placeholder.com/470x594/FFFFFF/?text=Imagem+Indisponível'
+              : product.image
+          }
           alt={product.name}
           className="product__image"
         />

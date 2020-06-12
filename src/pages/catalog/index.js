@@ -64,8 +64,15 @@ export default function Catalog({
                 }}
               >
                 <BoxImage>
+                  {product.discount_percentage && (
+                    <span className="product__discount_percentage">-12%</span>
+                  )}
                   <img
-                    src={product.image}
+                    src={
+                      !product.image
+                        ? 'https://via.placeholder.com/470x594/FFFFFF/?text=Imagem+Indisponível'
+                        : product.image
+                    }
                     alt={product.name}
                     className="product__item--image"
                   />
@@ -74,9 +81,16 @@ export default function Catalog({
                   <strong className="product__item--name">
                     {product.name}
                   </strong>
-                  <span className="product__item--price">
-                    {product.actual_price}
-                  </span>
+                  <div className="product__item--price">
+                    {product.regular_price !== product.actual_price && (
+                      <span className="product__item___price--regular">
+                        {product.actual_price}
+                      </span>
+                    )}
+                    <span className="product__item___price--actual">
+                      {product.actual_price}
+                    </span>
+                  </div>
                 </DescriptionProduct>
               </Link>
             </li>

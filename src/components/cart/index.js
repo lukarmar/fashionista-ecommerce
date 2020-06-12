@@ -47,10 +47,10 @@ export default function Cart({ setVisibleCart, visibleCart }) {
   console.tron.log(products);
 
   function increment(product) {
-    dispatch(updateAmountRequest(product.sku, product.amount + 1));
+    dispatch(updateAmountRequest(product.amount + 1, product.sku));
   }
   function decrement(product) {
-    dispatch(updateAmountRequest(product.sku, product.amount - 1));
+    dispatch(updateAmountRequest(product.amount - 1, product.sku));
   }
 
   function deleteProduct(style) {
@@ -71,68 +71,76 @@ export default function Cart({ setVisibleCart, visibleCart }) {
           </button>
           <span className="cart__length">Sacola ({amountProducts})</span>
         </Header>
-        <ProductCart>
-          {products.map((product) => (
-            <ProductCartItem>
-              <DescriptioCart>
-                <BoxImage>
-                  <img
-                    src={product.image}
-                    alt={product.name}
-                    className="product__image"
-                  />
-                </BoxImage>
-                <BoxDescriptionProduct>
-                  <BoxInformationProduct>
-                    <strong className="product__description--title">
-                      {product.name}
-                    </strong>
-                    <span className="product__description--size">
-                      Tam.: {product.size}
-                    </span>
-                    <BoxAmount>
-                      <button
-                        type="button"
-                        className="boxAmount__button"
-                        onClick={() => decrement(product)}
-                      >
-                        <FaMinus size={12} />
-                        <Ink />
-                      </button>
-                      <span className="boxAmount__number-amount">
-                        {product.amount}
+        {products.length === 0 ? (
+          <span className="cart__empty">Sua sacola está vazia :\</span>
+        ) : (
+          <ProductCart>
+            {products.map((product) => (
+              <ProductCartItem>
+                <DescriptioCart>
+                  <BoxImage>
+                    <img
+                      src={
+                        !product.image
+                          ? 'https://via.placeholder.com/470x594/FFFFFF/?text=Imagem+Indisponível'
+                          : product.image
+                      }
+                      alt={product.name}
+                      className="product__image"
+                    />
+                  </BoxImage>
+                  <BoxDescriptionProduct>
+                    <BoxInformationProduct>
+                      <strong className="product__description--title">
+                        {product.name}
+                      </strong>
+                      <span className="product__description--size">
+                        Tam.: {product.size}
                       </span>
-                      <button
-                        type="button"
-                        className="boxAmount__button"
-                        onClick={() => increment(product)}
-                      >
-                        <FaPlus size={12} />
-                        <Ink />
-                      </button>
-                    </BoxAmount>
-                  </BoxInformationProduct>
-                  <BoxPrice>
-                    <strong className="product__description--price">
-                      {product.actual_price}
-                    </strong>
-                    <span className="product__description--parcel">
-                      {product.installments}
-                    </span>
-                  </BoxPrice>
-                </BoxDescriptionProduct>
-              </DescriptioCart>
-              <button
-                type="button"
-                className="product__description--button-remove"
-                onClick={() => deleteProduct(product.style)}
-              >
-                Remover item
-                <Ink />
-              </button>
-            </ProductCartItem>
-          ))}
-        </ProductCart>
+                      <BoxAmount>
+                        <button
+                          type="button"
+                          className="boxAmount__button"
+                          onClick={() => decrement(product)}
+                        >
+                          <FaMinus size={12} />
+                          <Ink />
+                        </button>
+                        <span className="boxAmount__number-amount">
+                          {product.amount}
+                        </span>
+                        <button
+                          type="button"
+                          className="boxAmount__button"
+                          onClick={() => increment(product)}
+                        >
+                          <FaPlus size={12} />
+                          <Ink />
+                        </button>
+                      </BoxAmount>
+                    </BoxInformationProduct>
+                    <BoxPrice>
+                      <strong className="product__description--price">
+                        {product.actual_price}
+                      </strong>
+                      <span className="product__description--parcel">
+                        {product.installments}
+                      </span>
+                    </BoxPrice>
+                  </BoxDescriptionProduct>
+                </DescriptioCart>
+                <button
+                  type="button"
+                  className="product__description--button-remove"
+                  onClick={() => deleteProduct(product.style)}
+                >
+                  Remover item
+                  <Ink />
+                </button>
+              </ProductCartItem>
+            ))}
+          </ProductCart>
+        )}
 
         <Footer>
           <strong>Subtotal - {subTotal}</strong>
