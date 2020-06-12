@@ -11,12 +11,12 @@ export default function cart(state = INITIAL_STATE, action) {
       });
     case 'cart>>UPDATE_AMOUNT_SUCCESS':
       return produce(state, (draft) => {
-        const indexProduct = draft.findIndex((p) => p.style === action.style);
+        const indexProduct = draft.findIndex((p) => p.sku === action.sku);
         if (indexProduct >= 0) {
           draft[indexProduct].amount = Number(action.amount);
         }
       });
-    case 'cart>>REMOVE_ITEM':
+    case 'cart>>REMOVE_PRODUCT':
       return produce(state, (draft) => {
         const indexProduct = draft.findIndex((p) => p.style === action.style);
         if (indexProduct >= 0) {

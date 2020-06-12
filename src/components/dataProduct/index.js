@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Ink from 'react-ink';
+import { useDispatch } from 'react-redux';
+
+import { addCartRequest } from '../../store/modules/cart/actions';
 
 import {
   Products,
@@ -12,6 +15,18 @@ import {
 
 export default function DataProduct({ product }) {
   const [sizeSelect, setSizeSelect] = useState('');
+  const [size, setSize] = useState('');
+  const [error, setError] = useState(false);
+
+  const dispatch = useDispatch();
+
+  function handleProduct(style, sizeProduct) {
+    if (!size) {
+      setError(true);
+      return;
+    }
+    dispatch(addCartRequest(style, sizeProduct, sizeSelect));
+  }
 
   return (
     <Products>
@@ -33,6 +48,11 @@ export default function DataProduct({ product }) {
           </span>
         </BoxPrice>
         <span className="product__description--choice">Escolha o tamanho</span>
+        {error && (
+          <span className="product__description--error">
+            É necessário escolher um tamanho
+          </span>
+        )}
         <BoxSize>
           {product.sizes.map(
             (dataSize) =>
@@ -45,7 +65,10 @@ export default function DataProduct({ product }) {
                       ? 'product__button-size--selected'
                       : ''
                   }`}
-                  onClick={() => setSizeSelect(dataSize.sku)}
+                  onClick={() => {
+                    setSizeSelect(dataSize.sku);
+                    setSize(dataSize.size);
+                  }}
                 >
                   {dataSize.size}
                   <Ink />
@@ -53,7 +76,11 @@ export default function DataProduct({ product }) {
               )
           )}
         </BoxSize>
-        <button type="button" className="product__description--button-add">
+        <button
+          type="button"
+          className="product__description--button-add"
+          onClick={() => handleProduct(product.style, size)}
+        >
           Adicionar à Sacola
           <Ink />
         </button>
@@ -63,7 +90,7 @@ export default function DataProduct({ product }) {
 }
 
 DataProduct.propTypes = {
-  product: PropTypes.object,
+  product: PropTypes.object, //eslint-disable-line
 };
 
 DataProduct.defaultProps = {

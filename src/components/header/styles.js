@@ -28,6 +28,7 @@ export const BoxButtons = styled.div`
     border: none;
     background: transparent;
     margin-left: 18px;
+    border-radius: 50%;
   }
 
   .boxbuttons__button--cont {

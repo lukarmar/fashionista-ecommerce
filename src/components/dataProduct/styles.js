@@ -4,7 +4,6 @@ export const Products = styled.div`
   width: 100%;
   display: flex;
   margin-top: 56px;
-  z-index: 1;
 `;
 
 export const BoxImage = styled.figure`
@@ -32,6 +31,12 @@ export const BoxDescriptionProduct = styled.div`
   .product__description--choice {
     font-size: 0.9rem;
     color: #a7a7a7;
+  }
+
+  .product__description--error {
+    font-size: 0.8rem;
+    color: #cf3838;
+    margin: 8px 0;
   }
 
   .product__description--button-add {

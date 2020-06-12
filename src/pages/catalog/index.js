@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { CSSTransition } from 'react-transition-group';
 
 import Cart from '../../components/cart';
+import Search from '../../components/seach';
 import api from '../../service/api';
-import { getProductRequest } from '../../store/modules/product/actions';
 
 import {
   Container,
@@ -17,25 +16,22 @@ import {
   DescriptionProduct,
 } from './syles';
 
-export default function Catalog({ setProduct, setVisibleCart, visibleCart }) {
+export default function Catalog({
+  setProduct,
+  setVisibleCart,
+  visibleCart,
+  visibleSearch,
+  setVisibleSearch,
+}) {
   const [products, setProducts] = useState([]);
-  const dispatch = useDispatch();
 
   useEffect(() => {
     api.get().then((response) => setProducts(response.data));
   }, []);
 
-  // function requestProduct(style) {
-  //   dispatch(addCartRequest(style));
-  // }
-
-  function getProduct(style) {
-    dispatch(getProductRequest(style));
-  }
-
   return (
     <Container>
-      {visibleCart && <ShadowScrenn />}
+      {(visibleCart || visibleSearch) && <ShadowScrenn />}
       <CSSTransition
         in={visibleCart}
         timeout={300}
@@ -43,6 +39,18 @@ export default function Catalog({ setProduct, setVisibleCart, visibleCart }) {
         unmountOnExit
       >
         <Cart setVisibleCart={setVisibleCart} visibleCart={visibleCart} />
+      </CSSTransition>
+      <CSSTransition
+        in={visibleSearch}
+        timeout={300}
+        classNames="visible"
+        unmountOnExit
+      >
+        <Search
+          setProduct={setProduct}
+          visibleSearch={visibleSearch}
+          setVisibleSearch={setVisibleSearch}
+        />
       </CSSTransition>
 
       <BoxProducts>
@@ -52,7 +60,6 @@ export default function Catalog({ setProduct, setVisibleCart, visibleCart }) {
               <Link
                 to={`/products/${product.name}`}
                 onClick={() => {
-                  getProduct(product.style);
                   setProduct(product);
                 }}
               >
@@ -84,4 +91,6 @@ Catalog.propTypes = {
   setProduct: PropTypes.func.isRequired,
   setVisibleCart: PropTypes.func.isRequired,
   visibleCart: PropTypes.bool.isRequired,
+  setVisibleSearch: PropTypes.func.isRequired,
+  visibleSearch: PropTypes.bool.isRequired,
 };

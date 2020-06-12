@@ -4,13 +4,21 @@ import { CSSTransition } from 'react-transition-group';
 
 import DataProduct from '../../components/dataProduct';
 import Cart from '../../components/cart';
+import Search from '../../components/seach';
 
 import { Container, BoxProducts, ShadowScrenn } from './styles';
 
-export default function Product({ product, setVisibleCart, visibleCart }) {
+export default function Product({
+  setProduct,
+  product,
+  setVisibleCart,
+  visibleCart,
+  visibleSearch,
+  setVisibleSearch,
+}) {
   return (
     <Container>
-      {visibleCart && <ShadowScrenn />}
+      {(visibleCart || visibleSearch) && <ShadowScrenn />}
       <CSSTransition
         in={visibleCart}
         timeout={300}
@@ -19,6 +27,20 @@ export default function Product({ product, setVisibleCart, visibleCart }) {
       >
         <Cart setVisibleCart={setVisibleCart} visibleCart={visibleCart} />
       </CSSTransition>
+
+      <CSSTransition
+        in={visibleSearch}
+        timeout={300}
+        classNames="visible"
+        unmountOnExit
+      >
+        <Search
+          setProduct={setProduct}
+          visibleSearch={visibleSearch}
+          setVisibleSearch={setVisibleSearch}
+        />
+      </CSSTransition>
+
       {!product ? (
         'Aguarde'
       ) : (
@@ -31,9 +53,12 @@ export default function Product({ product, setVisibleCart, visibleCart }) {
 }
 
 Product.propTypes = {
+  setProduct: PropTypes.func.isRequired,
   product: PropTypes.object, //eslint-disable-line
   setVisibleCart: PropTypes.func.isRequired,
   visibleCart: PropTypes.bool.isRequired,
+  setVisibleSearch: PropTypes.func.isRequired,
+  visibleSearch: PropTypes.bool.isRequired,
 };
 
 Product.defaultProps = {

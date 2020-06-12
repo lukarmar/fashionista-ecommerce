@@ -10,7 +10,7 @@ export const Container = styled.div`
   z-index: 999;
 `;
 
-export const CartContainer = styled.div`
+export const SearchContainer = styled.div`
   position: relative;
   width: 28%;
   height: 100%;
@@ -18,6 +18,7 @@ export const CartContainer = styled.div`
   box-shadow: -1px 0px 2px 0px rgba(0, 0, 0, 1);
   overflow-y: auto;
   display: flex;
+  flex-direction: column;
 `;
 
 export const Header = styled.div`
@@ -31,45 +32,72 @@ export const Header = styled.div`
   box-shadow: 0px 2px 3px 0px rgba(48, 50, 50, 0.05);
   z-index: 21;
 
-  .cart__header--button {
+  .search__header--button {
     position: relative;
     background: transparent;
     padding: 1px;
     border: none;
     border-radius: 50%;
   }
-  .cart__length {
+
+  .search__header--title {
     flex: 1;
     font-size: 0.9rem;
     font-weight: 700;
-    margin-left: 50px;
+    margin-left: 18px;
   }
 `;
 
-export const ProductCart = styled.div`
-  position: relative;
-  padding: 68px 18px 0 18px;
+export const BoxInputSearch = styled.div`
+  background: #f6f6f6;
+  box-shadow: 0 0.2rem 2rem 0 rgba(0, 0, 0, 0.1);
+  color: #fff;
+  display: inline-block;
+  padding: 0.8rem 1rem;
+  margin-top: 54px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .boxInputSearch__input::placeholder {
+    color: #a7a7a7;
+    font-weight: bold;
+  }
+
+  .boxInputSearch__input {
+    background: #fff;
+    border-radius: 4px;
+    border: none;
+    box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.2);
+    color: #212529;
+    font-size: 0.9rem;
+    font-weight: 600;
+    height: auto;
+    outline: none;
+    padding: 10px;
+    width: 100%;
+  }
 `;
 
-export const ProductCartItem = styled.div`
+export const ProductSearch = styled.div`
+  position: relative;
+  padding: 48px 18px 0 18px;
+
+  a {
+    color: #000;
+  }
+`;
+
+export const ProductSearchItem = styled.div`
   display: flex;
   flex-direction: column;
   padding-bottom: 10px;
   box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.08);
   margin-bottom: 10px;
-
-  .product__description--button-remove {
-    position: relative;
-    background: transparent;
-    border: none;
-
-    width: 25%;
-    font-size: 0.8rem;
-    color: #cf3838;
-  }
 `;
 
-export const DescriptioCart = styled.div`
+export const DescriptioSearch = styled.div`
   display: flex;
 `;
 export const BoxImage = styled.div`
@@ -98,40 +126,8 @@ export const BoxInformationProduct = styled.div`
     font-size: 0.7rem;
     letter-spacing: 0.5px;
   }
-
-  .product__description--size {
-    font-size: 0.7rem;
-    color: #a7a7a7;
-    margin: 8px 0;
-    letter-spacing: 0.5px;
-  }
 `;
-export const BoxAmount = styled.div`
-  display: flex;
-  align-items: center;
 
-  .boxAmount__button {
-    display: flex;
-    position: relative;
-    padding: 5px;
-    justify-content: center;
-    align-items: center;
-    background: transparent;
-
-    border: 1px #000 solid;
-    transition: 0.5s ease;
-
-    &:hover {
-      color: #fff;
-      background: #000;
-    }
-  }
-
-  .boxAmount__number-amount {
-    font-size: 1rem;
-    margin: 0 15px;
-  }
-`;
 export const BoxPrice = styled.div`
   position: relative;
   display: flex;
@@ -149,20 +145,5 @@ export const BoxPrice = styled.div`
     text-align: right;
     color: #a7a7a7;
     letter-spacing: 0.5px;
-  }
-`;
-export const Footer = styled.div`
-  position: fixed;
-  bottom: 0;
-  background: #212529;
-  padding: 16px 28px;
-  width: 100%;
-  box-shadow: 0 -0.2rem 2rem 0 rgba(0, 0, 0, 0.08);
-  display: inline-block;
-  z-index: 21;
-
-  strong {
-    font-size: 0.9rem;
-    color: #fff;
   }
 `;

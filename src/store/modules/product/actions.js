@@ -1,7 +1,7 @@
-export function getProductRequest(style) {
+export function getProductRequest(product) {
   return {
     type: 'product>>GET_PRODUCT_RESQUEST',
-    style,
+    product,
   };
 }
 

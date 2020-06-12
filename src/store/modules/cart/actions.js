@@ -1,7 +1,9 @@
-export function addCartRequest(style) {
+export function addCartRequest(style, size, sku) {
   return {
     type: 'cart>>ADD_CART_RESQUEST',
     style,
+    size,
+    sku,
   };
 }
 
@@ -12,18 +14,18 @@ export function addCartSuccess(product) {
   };
 }
 
-export function updateAmountRequest(style, amount) {
+export function updateAmountRequest(amount, sku) {
   return {
     type: 'cart>>UPDATE_AMOUNT_REQUEST',
-    style,
     amount,
+    sku,
   };
 }
 
-export function updateAmountSuccess(style, amount) {
+export function updateAmountSuccess(sku, amount) {
   return {
     type: 'cart>>UPDATE_AMOUNT_SUCCESS',
-    style,
+    sku,
     amount,
   };
 }
