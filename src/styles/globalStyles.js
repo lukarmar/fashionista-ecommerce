@@ -17,7 +17,7 @@ export default createGlobalStyle`
     background: #f9f9f9;
 
     .visible-enter {
-      right: -100%;
+      right: -50%;
     }
     .visible-enter-active {
       right: 0;
@@ -27,10 +27,27 @@ export default createGlobalStyle`
       right: 0;
     }
     .visible-exit-active {
-      right: -100%;
-      transition: right 900ms;
+      right: -50%;
+      transition: right 700ms;
     }
 
+
+    @media (max-width: 1045px) {
+      .visible-enter {
+      right: -100%;
+    }
+    .visible-enter-active {
+      right: 0;
+      transition: right 500ms;
+    }
+    .visible-exit {
+      right: 0;
+    }
+      .visible-exit-active {
+      right: -100%;
+      transition: right 500ms;
+    }
+    }
 
   }
 
