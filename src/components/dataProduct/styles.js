@@ -4,6 +4,10 @@ export const Products = styled.div`
   width: 100%;
   display: flex;
   margin-top: 56px;
+
+  @media (max-width: 850px) {
+    flex-direction: column;
+  }
 `;
 
 export const BoxImage = styled.figure`
@@ -15,11 +19,17 @@ export const BoxImage = styled.figure`
   .product__image {
     width: 100%;
   }
+
+  @media (max-width: 850px) {
+    width: 100vw;
+  }
 `;
 
 export const BoxDescriptionProduct = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   flex: 1;
   padding: 0.5rem 1rem;
 
@@ -52,6 +62,19 @@ export const BoxDescriptionProduct = styled.div`
     padding: 0.5rem;
     text-align: center;
   }
+
+  @media (max-width: 850px) {
+    .product__description--button-add {
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 380px) {
+    .product__description--title {
+      font-size: 0.9rem;
+      color: #000;
+    }
+  }
 `;
 
 export const BoxPrice = styled.div`
@@ -67,6 +90,20 @@ export const BoxPrice = styled.div`
     font-weight: bold;
     color: #a7a7a7;
     margin-left: 10px;
+  }
+
+  @media (max-width: 380px) {
+    .product__description--price {
+      font-size: 0.8rem;
+      font-weight: bold;
+    }
+
+    .product__description--parcel {
+      font-size: 0.7rem;
+      font-weight: bold;
+      color: #a7a7a7;
+      margin-left: 5px;
+    }
   }
 `;
 export const BoxSize = styled.div`

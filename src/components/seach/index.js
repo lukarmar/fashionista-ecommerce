@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FaArrowLeft } from 'react-icons/fa';
 import Ink from 'react-ink';
 import PropType from 'prop-types';
@@ -9,6 +9,8 @@ import {
   getSearchProductSuccess,
   getProductRequest,
   deleteStateSeach,
+  getSingleProductRequest,
+  deletePreviusState,
 } from '../../store/modules/product/actions';
 
 import {
@@ -25,15 +27,10 @@ import {
   BoxPrice,
 } from './styles';
 
-export default function Search({
-  visibleSearch,
-  setVisibleSearch,
-  setProduct,
-}) {
+export default function Search({ visibleSearch, setVisibleSearch }) {
   const products = useSelector((state) => state.product);
   const [captureValue, setCaptureValue] = useState('');
   const [keyCode, setKeyCode] = useState('');
-  const inputRef = useRef(null);
 
   const dispatch = useDispatch();
 
@@ -48,6 +45,12 @@ export default function Search({
     }
     dispatch(getSearchProductSuccess(captureValue));
   }, [captureValue]); //eslint-disable-line
+
+  async function handleStateAndVisible(style) {
+    await dispatch(getSingleProductRequest(style));
+    await dispatch(deletePreviusState());
+    setVisibleSearch(false);
+  }
 
   return (
     <Container>
@@ -65,7 +68,6 @@ export default function Search({
         </Header>
         <BoxInputSearch>
           <input
-            ref={inputRef}
             onKeyDown={(e) => setKeyCode(e.keyCode)}
             name="search"
             className="boxInputSearch__input"
@@ -80,10 +82,9 @@ export default function Search({
         <ProductSearch>
           {products.searchData.map((data) => (
             <Link
-              to={`/products/${data.name}`}
-              onClick={() => {
-                setVisibleSearch(false);
-                setProduct(data);
+              to={`/products/${data.style}`}
+              onClick={async () => {
+                handleStateAndVisible(data.style);
               }}
             >
               <ProductSearchItem>
@@ -126,6 +127,5 @@ export default function Search({
 
 Search.propTypes = {
   setVisibleSearch: PropType.func.isRequired,
-  setProduct: PropType.func.isRequired,
   visibleSearch: PropType.bool.isRequired,
 };

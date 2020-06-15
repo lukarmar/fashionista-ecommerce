@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const ShadowScrenn = styled.div`
+export const ShadowScreen = styled.div`
   position: fixed;
   width: 100%;
   height: 100%;
@@ -26,6 +26,10 @@ export const ShadowScrenn = styled.div`
       rgba(0, 212, 255, 1) 100%
     );
   }
+
+  @media (max-width: 1045px) {
+    z-index: -1;
+  }
 `;
 
 export const Container = styled.section`
@@ -50,16 +54,30 @@ export const Products = styled.ul`
   margin-top: 98px;
   flex-wrap: wrap;
 
+  justify-content: space-around;
+
   li {
     width: 24.7%;
     height: auto;
     display: flex;
     flex-direction: column;
+  }
 
-    margin-right: 4px;
+  @media (max-width: 991px) {
+    li {
+      width: 33%;
+    }
+  }
 
-    &:nth-child(4n) {
-      margin: 0;
+  @media (max-width: 760px) {
+    li {
+      width: 49%;
+    }
+  }
+
+  @media (max-width: 460px) {
+    li {
+      width: 100%;
     }
   }
 `;

@@ -44,8 +44,6 @@ export default function Cart({ setVisibleCart, visibleCart }) {
     )
   );
 
-  console.tron.log(products);
-
   function increment(product) {
     dispatch(updateAmountRequest(product.amount + 1, product.sku));
   }

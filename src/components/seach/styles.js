@@ -19,6 +19,10 @@ export const SearchContainer = styled.div`
   overflow-y: auto;
   display: flex;
   flex-direction: column;
+
+  @media (max-width: 1045px) {
+    width: 100%;
+  }
 `;
 
 export const Header = styled.div`
@@ -45,6 +49,12 @@ export const Header = styled.div`
     font-size: 0.9rem;
     font-weight: 700;
     margin-left: 18px;
+  }
+
+  @media (max-width: 1045px) {
+    .search__header--title {
+      margin-left: 40%;
+    }
   }
 `;
 

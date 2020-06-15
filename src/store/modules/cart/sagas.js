@@ -35,6 +35,6 @@ function* updateAmount({ amount, sku }) {
 }
 
 export default all([
-  takeLatest('cart>>ADD_CART_RESQUEST', addCart),
-  takeLatest('cart>>UPDATE_AMOUNT_REQUEST', updateAmount),
+  takeLatest('cart::ADD_CART_RESQUEST', addCart),
+  takeLatest('cart::UPDATE_AMOUNT_REQUEST', updateAmount),
 ]);

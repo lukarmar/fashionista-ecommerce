@@ -6,7 +6,7 @@ export const Container = styled.section`
   justify-content: center;
 `;
 
-export const ShadowScrenn = styled.div`
+export const ShadowScreen = styled.div`
   position: fixed;
   width: 100%;
   height: 100%;
@@ -32,11 +32,20 @@ export const ShadowScrenn = styled.div`
       rgba(0, 212, 255, 1) 100%
     );
   }
+
+  @media (max-width: 1045px) {
+    z-index: -10;
+  }
 `;
 
 export const BoxProducts = styled.div`
+  position: relative;
   width: 100%;
   max-width: 1247px;
   display: flex;
   padding: 16px;
+
+  @media (max-width: 850px) {
+    padding-bottom: 0;
+  }
 `;

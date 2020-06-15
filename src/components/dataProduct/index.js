@@ -28,7 +28,7 @@ export default function DataProduct({ product }) {
     dispatch(addCartRequest(style, sizeProduct, sizeSelect));
   }
 
-  return (
+  return product !== null ? (
     <Products>
       <BoxImage>
         <img
@@ -90,6 +90,8 @@ export default function DataProduct({ product }) {
         </button>
       </BoxDescriptionProduct>
     </Products>
+  ) : (
+    'Aguarde'
   );
 }
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import Ink from 'react-ink';
 import { FiSearch, FiShoppingBag } from 'react-icons/fi';
@@ -42,3 +43,8 @@ export default function Header({ setVisibleCart, setVisibleSearch }) {
     </Container>
   );
 }
+
+Header.propTypes = {
+  setVisibleCart: PropTypes.func.isRequired,
+  setVisibleSearch: PropTypes.func.isRequired,
+};

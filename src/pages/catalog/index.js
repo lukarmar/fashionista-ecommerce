@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { CSSTransition } from 'react-transition-group';
+
+import { deletePreviusState } from '../../store/modules/product/actions';
 
 import Cart from '../../components/cart';
 import Search from '../../components/seach';
@@ -9,7 +12,7 @@ import api from '../../service/api';
 
 import {
   Container,
-  ShadowScrenn,
+  ShadowScreen,
   BoxProducts,
   Products,
   BoxImage,
@@ -17,13 +20,13 @@ import {
 } from './syles';
 
 export default function Catalog({
-  setProduct,
   setVisibleCart,
   visibleCart,
   visibleSearch,
   setVisibleSearch,
 }) {
   const [products, setProducts] = useState([]);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     api.get().then((response) => setProducts(response.data));
@@ -31,10 +34,10 @@ export default function Catalog({
 
   return (
     <Container>
-      {(visibleCart || visibleSearch) && <ShadowScrenn />}
+      {(visibleCart || visibleSearch) && <ShadowScreen />}
       <CSSTransition
         in={visibleCart}
-        timeout={300}
+        timeout={400}
         classNames="visible"
         unmountOnExit
       >
@@ -42,12 +45,11 @@ export default function Catalog({
       </CSSTransition>
       <CSSTransition
         in={visibleSearch}
-        timeout={300}
+        timeout={400}
         classNames="visible"
         unmountOnExit
       >
         <Search
-          setProduct={setProduct}
           visibleSearch={visibleSearch}
           setVisibleSearch={setVisibleSearch}
         />
@@ -58,14 +60,16 @@ export default function Catalog({
           {products.map((product) => (
             <li className="product__list" key={product.code_color}>
               <Link
-                to={`/products/${product.name}`}
+                to={`/products/${product.style}`}
                 onClick={() => {
-                  setProduct(product);
+                  dispatch(deletePreviusState());
                 }}
               >
                 <BoxImage>
                   {product.discount_percentage && (
-                    <span className="product__discount_percentage">-12%</span>
+                    <span className="product__discount_percentage">
+                      {product.discount_percentage}
+                    </span>
                   )}
                   <img
                     src={
@@ -102,7 +106,6 @@ export default function Catalog({
 }
 
 Catalog.propTypes = {
-  setProduct: PropTypes.func.isRequired,
   setVisibleCart: PropTypes.func.isRequired,
   visibleCart: PropTypes.bool.isRequired,
   setVisibleSearch: PropTypes.func.isRequired,

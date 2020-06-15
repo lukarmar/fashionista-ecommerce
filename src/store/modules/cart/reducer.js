@@ -4,19 +4,19 @@ const INITIAL_STATE = [];
 
 export default function cart(state = INITIAL_STATE, action) {
   switch (action.type) {
-    case 'cart>>ADD_CART_SUCCESS':
+    case 'cart::ADD_CART_SUCCESS':
       return produce(state, (draft) => {
         const { product } = action;
         draft.push(product);
       });
-    case 'cart>>UPDATE_AMOUNT_SUCCESS':
+    case 'cart::UPDATE_AMOUNT_SUCCESS':
       return produce(state, (draft) => {
         const indexProduct = draft.findIndex((p) => p.sku === action.sku);
         if (indexProduct >= 0) {
           draft[indexProduct].amount = Number(action.amount);
         }
       });
-    case 'cart>>REMOVE_PRODUCT':
+    case 'cart::REMOVE_PRODUCT':
       return produce(state, (draft) => {
         const indexProduct = draft.findIndex((p) => p.style === action.style);
         if (indexProduct >= 0) {

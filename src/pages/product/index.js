@@ -1,27 +1,37 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { useParams } from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
+import { useDispatch, useSelector } from 'react-redux';
 
 import DataProduct from '../../components/dataProduct';
 import Cart from '../../components/cart';
 import Search from '../../components/seach';
 
-import { Container, BoxProducts, ShadowScrenn } from './styles';
+import { getSingleProductRequest } from '../../store/modules/product/actions';
+
+import { Container, BoxProducts, ShadowScreen } from './styles';
 
 export default function Product({
-  setProduct,
-  product,
   setVisibleCart,
   visibleCart,
   visibleSearch,
   setVisibleSearch,
 }) {
+  const dispatch = useDispatch();
+  const { id } = useParams();
+  const { product } = useSelector((state) => state.product.singleProduct);
+
+  useEffect(() => {
+    dispatch(getSingleProductRequest(id));
+  }, []); // eslint-disable-line
+
   return (
     <Container>
-      {(visibleCart || visibleSearch) && <ShadowScrenn />}
+      {(visibleCart || visibleSearch) && <ShadowScreen />}
       <CSSTransition
         in={visibleCart}
-        timeout={300}
+        timeout={400}
         classNames="visible"
         unmountOnExit
       >
@@ -30,12 +40,11 @@ export default function Product({
 
       <CSSTransition
         in={visibleSearch}
-        timeout={300}
+        timeout={400}
         classNames="visible"
         unmountOnExit
       >
         <Search
-          setProduct={setProduct}
           visibleSearch={visibleSearch}
           setVisibleSearch={setVisibleSearch}
         />
@@ -53,14 +62,8 @@ export default function Product({
 }
 
 Product.propTypes = {
-  setProduct: PropTypes.func.isRequired,
-  product: PropTypes.object, //eslint-disable-line
   setVisibleCart: PropTypes.func.isRequired,
   visibleCart: PropTypes.bool.isRequired,
   setVisibleSearch: PropTypes.func.isRequired,
   visibleSearch: PropTypes.bool.isRequired,
-};
-
-Product.defaultProps = {
-  product: null,
 };

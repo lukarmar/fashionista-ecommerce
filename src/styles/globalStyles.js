@@ -17,20 +17,23 @@ export default createGlobalStyle`
     background: #f9f9f9;
 
     .visible-enter {
-      right: -29%;
+      right: -100%;
     }
     .visible-enter-active {
       right: 0;
-      transition: right 300ms, right 300ms;
+      transition: right 400ms;
     }
     .visible-exit {
       right: 0;
     }
     .visible-exit-active {
-      right: -29%;
-      transition: right 300ms, right 300ms;
+      right: -100%;
+      transition: right 400ms;
     }
-}
+
+
+  }
+
 
   body {
     -webkit-font-smoothing: antialiased;

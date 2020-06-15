@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 import { Switch, Route } from 'react-router-dom';
 
@@ -11,23 +12,18 @@ export default function Routes({
   visibleSearch,
   setVisibleSearch,
 }) {
-  const [product, setProduct] = useState(null);
-
   return (
     <Switch>
       <Route path="/" exact>
         <Catalog
-          setProduct={setProduct}
           visibleCart={visibleCart}
           setVisibleCart={setVisibleCart}
           visibleSearch={visibleSearch}
           setVisibleSearch={setVisibleSearch}
         />
       </Route>
-      <Route path="/products">
+      <Route path="/products/:id">
         <Product
-          setProduct={setProduct}
-          product={product}
           visibleCart={visibleCart}
           setVisibleCart={setVisibleCart}
           visibleSearch={visibleSearch}
@@ -37,3 +33,10 @@ export default function Routes({
     </Switch>
   );
 }
+
+Routes.propTypes = {
+  setVisibleCart: PropTypes.func.isRequired,
+  visibleCart: PropTypes.bool.isRequired,
+  visibleSearch: PropTypes.bool.isRequired,
+  setVisibleSearch: PropTypes.func.isRequired,
+};
