@@ -55,12 +55,13 @@ export const Header = styled.div`
     flex: 1;
     font-size: 0.9rem;
     font-weight: 700;
+    display: flex;
     margin-left: 50px;
   }
 
   @media (max-width: 1045px) {
     .cart__length {
-      margin-left: 40%;
+      margin-left: 30%;
     }
   }
 `;
@@ -90,7 +91,7 @@ export const ProductCartItem = styled.div`
     display: flex;
     justify-content: flex-start;
 
-    width: 40%;
+    width: 30%;
     font-size: 0.8rem;
     color: #cf3838;
   }

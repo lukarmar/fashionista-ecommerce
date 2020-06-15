@@ -53,7 +53,7 @@ export const Header = styled.div`
 
   @media (max-width: 1045px) {
     .search__header--title {
-      margin-left: 40%;
+      margin-left: 28%;
     }
   }
 `;

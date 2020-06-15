@@ -8,6 +8,7 @@ import { deletePreviusState } from '../../store/modules/product/actions';
 
 import Cart from '../../components/cart';
 import Search from '../../components/seach';
+import Loading from '../../components/loading';
 import api from '../../service/api';
 
 import {
@@ -54,53 +55,56 @@ export default function Catalog({
           setVisibleSearch={setVisibleSearch}
         />
       </CSSTransition>
-
-      <BoxProducts>
-        <Products>
-          {products.map((product) => (
-            <li className="product__list" key={product.code_color}>
-              <Link
-                to={`/products/${product.style}`}
-                onClick={() => {
-                  dispatch(deletePreviusState());
-                }}
-              >
-                <BoxImage>
-                  {product.discount_percentage && (
-                    <span className="product__discount_percentage">
-                      {product.discount_percentage}
-                    </span>
-                  )}
-                  <img
-                    src={
-                      !product.image
-                        ? 'https://via.placeholder.com/470x594/FFFFFF/?text=Imagem+Indisponível'
-                        : product.image
-                    }
-                    alt={product.name}
-                    className="product__item--image"
-                  />
-                </BoxImage>
-                <DescriptionProduct>
-                  <strong className="product__item--name">
-                    {product.name}
-                  </strong>
-                  <div className="product__item--price">
-                    {product.regular_price !== product.actual_price && (
-                      <span className="product__item___price--regular">
-                        {product.actual_price}
+      {products.length === 0 ? (
+        <Loading />
+      ) : (
+        <BoxProducts>
+          <Products>
+            {products.map((product) => (
+              <li className="product__list" key={product.code_color}>
+                <Link
+                  to={`/products/${product.style}`}
+                  onClick={() => {
+                    dispatch(deletePreviusState());
+                  }}
+                >
+                  <BoxImage>
+                    {product.discount_percentage && (
+                      <span className="product__discount_percentage">
+                        {product.discount_percentage}
                       </span>
                     )}
-                    <span className="product__item___price--actual">
-                      {product.actual_price}
-                    </span>
-                  </div>
-                </DescriptionProduct>
-              </Link>
-            </li>
-          ))}
-        </Products>
-      </BoxProducts>
+                    <img
+                      src={
+                        !product.image
+                          ? 'https://via.placeholder.com/470x594/FFFFFF/?text=Imagem+Indisponível'
+                          : product.image
+                      }
+                      alt={product.name}
+                      className="product__item--image"
+                    />
+                  </BoxImage>
+                  <DescriptionProduct>
+                    <strong className="product__item--name">
+                      {product.name}
+                    </strong>
+                    <div className="product__item--price">
+                      {product.regular_price !== product.actual_price && (
+                        <span className="product__item___price--regular">
+                          {product.actual_price}
+                        </span>
+                      )}
+                      <span className="product__item___price--actual">
+                        {product.actual_price}
+                      </span>
+                    </div>
+                  </DescriptionProduct>
+                </Link>
+              </li>
+            ))}
+          </Products>
+        </BoxProducts>
+      )}
     </Container>
   );
 }

@@ -28,7 +28,7 @@ export const ShadowScreen = styled.div`
   }
 
   @media (max-width: 1045px) {
-    z-index: -1;
+    display: none;
   }
 `;
 

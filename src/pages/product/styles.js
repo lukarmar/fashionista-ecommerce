@@ -34,7 +34,7 @@ export const ShadowScreen = styled.div`
   }
 
   @media (max-width: 1045px) {
-    z-index: -10;
+    display: none;
   }
 `;
 
@@ -46,6 +46,6 @@ export const BoxProducts = styled.div`
   padding: 16px;
 
   @media (max-width: 850px) {
-    padding-bottom: 0;
+    padding: 0;
   }
 `;

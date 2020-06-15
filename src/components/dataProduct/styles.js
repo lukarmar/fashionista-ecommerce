@@ -6,6 +6,7 @@ export const Products = styled.div`
   margin-top: 56px;
 
   @media (max-width: 850px) {
+    width: 100%;
     flex-direction: column;
   }
 `;
@@ -21,7 +22,7 @@ export const BoxImage = styled.figure`
   }
 
   @media (max-width: 850px) {
-    width: 100vw;
+    width: 100%;
   }
 `;
 
@@ -51,7 +52,7 @@ export const BoxDescriptionProduct = styled.div`
 
   .product__description--button-add {
     position: relative;
-    width: 50%;
+    width: 70%;
     background: #212529;
     border-radius: 4px;
     border: none;
@@ -64,6 +65,7 @@ export const BoxDescriptionProduct = styled.div`
   }
 
   @media (max-width: 850px) {
+    padding: 0.5rem 16px;
     .product__description--button-add {
       width: 100%;
     }

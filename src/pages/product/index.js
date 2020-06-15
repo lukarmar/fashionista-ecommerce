@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import DataProduct from '../../components/dataProduct';
 import Cart from '../../components/cart';
 import Search from '../../components/seach';
+import Loading from '../../components/loading';
 
 import { getSingleProductRequest } from '../../store/modules/product/actions';
 
@@ -51,7 +52,7 @@ export default function Product({
       </CSSTransition>
 
       {!product ? (
-        'Aguarde'
+        <Loading />
       ) : (
         <BoxProducts>
           <DataProduct product={product} />
