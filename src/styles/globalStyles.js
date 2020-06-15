@@ -28,7 +28,7 @@ export default createGlobalStyle`
     }
     .visible-exit-active {
       right: -100%;
-      transition: right 400ms;
+      transition: right 900ms;
     }
 
 
