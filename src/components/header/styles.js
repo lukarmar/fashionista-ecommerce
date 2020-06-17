@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const Container = styled.div`
   width: 100%;
@@ -6,10 +6,19 @@ export const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: 0px 3px 3px -2px rgba(0, 0, 0, 0.04);
+  box-shadow: 0px 3px 3px -2px rgba(0, 0, 0, 0.02);
+  transition: 0.5s ease;
 
   position: fixed;
   z-index: 11;
+
+  ${(props) =>
+    props.numberScrool > 53 &&
+    css`
+      background: RGBA(0, 0, 0, 0.13);
+      /* box-shadow: none; */
+      transition: 0.5s ease;
+    `}
 `;
 export const Content = styled.div`
   width: 100%;

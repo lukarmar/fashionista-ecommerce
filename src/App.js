@@ -14,6 +14,7 @@ import GlobalStyle from './styles/globalStyles';
 function App() {
   const [visibleCart, setVisibleCart] = useState(false);
   const [visibleSearch, setVisibleSearch] = useState(false);
+  const [numberScrool, setNumberScrool] = useState(0);
   return (
     <Provider store={store}>
       <PersistGate persistor={persistor}>
@@ -21,10 +22,12 @@ function App() {
           <Header
             setVisibleCart={setVisibleCart}
             setVisibleSearch={setVisibleSearch}
+            numberScrool={numberScrool}
           />
           <Routes
             setVisibleCart={setVisibleCart}
             setVisibleSearch={setVisibleSearch}
+            setNumberScrool={setNumberScrool}
             visibleCart={visibleCart}
             visibleSearch={visibleSearch}
           />

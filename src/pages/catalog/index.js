@@ -1,108 +1,53 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useRouteMatch } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { CSSTransition } from 'react-transition-group';
 
-import { deletePreviusState } from '../../store/modules/product/actions';
-
-import Cart from '../../components/cart';
-import Search from '../../components/seach';
+import Products from '../../components/products';
+import SideBar from '../../components/sideBar';
 import Loading from '../../components/loading';
 import api from '../../service/api';
 
-import {
-  Container,
-  ShadowScreen,
-  BoxProducts,
-  Products,
-  BoxImage,
-  DescriptionProduct,
-} from './syles';
+import { Container, BoxProducts, ProductList } from './syles';
 
 export default function Catalog({
   setVisibleCart,
   visibleCart,
   visibleSearch,
   setVisibleSearch,
+  setNumberScrool,
 }) {
   const [products, setProducts] = useState([]);
-  const dispatch = useDispatch();
+  const { path } = useRouteMatch();
 
   useEffect(() => {
     api.get().then((response) => setProducts(response.data));
   }, []);
 
+  window.addEventListener('scroll', () => {
+    if (path === '/products/:id') {
+      setNumberScrool(0);
+      return;
+    }
+    setNumberScrool(window.scrollY);
+  });
+
   return (
     <Container>
-      {(visibleCart || visibleSearch) && <ShadowScreen />}
-      <CSSTransition
-        in={visibleCart}
-        timeout={400}
-        classNames="visible"
-        unmountOnExit
-      >
-        <Cart setVisibleCart={setVisibleCart} visibleCart={visibleCart} />
-      </CSSTransition>
-      <CSSTransition
-        in={visibleSearch}
-        timeout={400}
-        classNames="visible"
-        unmountOnExit
-      >
-        <Search
-          visibleSearch={visibleSearch}
-          setVisibleSearch={setVisibleSearch}
-        />
-      </CSSTransition>
+      <SideBar
+        setVisibleCart={setVisibleCart}
+        setVisibleSearch={setVisibleSearch}
+        visibleCart={visibleCart}
+        visibleSearch={visibleSearch}
+      />
       {products.length === 0 ? (
         <Loading />
       ) : (
         <BoxProducts>
-          <Products>
-            {products.map((product) => (
-              <li className="product__list" key={product.code_color}>
-                <Link
-                  to={`/products/${product.style}`}
-                  onClick={() => {
-                    dispatch(deletePreviusState());
-                  }}
-                >
-                  <BoxImage>
-                    {product.discount_percentage && (
-                      <span className="product__discount_percentage">
-                        {product.discount_percentage}
-                      </span>
-                    )}
-                    <img
-                      src={
-                        !product.image
-                          ? 'https://via.placeholder.com/470x594/FFFFFF/?text=Imagem+Indisponível'
-                          : product.image
-                      }
-                      alt={product.name}
-                      className="product__item--image"
-                    />
-                  </BoxImage>
-                  <DescriptionProduct>
-                    <strong className="product__item--name">
-                      {product.name}
-                    </strong>
-                    <div className="product__item--price">
-                      {product.regular_price !== product.actual_price && (
-                        <span className="product__item___price--regular">
-                          {product.actual_price}
-                        </span>
-                      )}
-                      <span className="product__item___price--actual">
-                        {product.actual_price}
-                      </span>
-                    </div>
-                  </DescriptionProduct>
-                </Link>
-              </li>
+          <ProductList>
+            {products.map((itemProduct) => (
+              <Products products={itemProduct} key={itemProduct.code_color} />
             ))}
-          </Products>
+          </ProductList>
         </BoxProducts>
       )}
     </Container>
@@ -114,4 +59,5 @@ Catalog.propTypes = {
   visibleCart: PropTypes.bool.isRequired,
   setVisibleSearch: PropTypes.func.isRequired,
   visibleSearch: PropTypes.bool.isRequired,
+  setNumberScrool: PropTypes.func.isRequired,
 };

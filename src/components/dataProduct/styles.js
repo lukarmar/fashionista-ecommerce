@@ -48,6 +48,7 @@ export const BoxDescriptionProduct = styled.div`
     font-size: 0.8rem;
     color: #cf3838;
     margin: 8px 0;
+    transition: 0.7s ease;
   }
 
   .product__description--button-add {
@@ -111,6 +112,7 @@ export const BoxPrice = styled.div`
 export const BoxSize = styled.div`
   display: flex;
   margin: 10px 0 20px 0;
+  transition: 0.7s ease;
 
   .product__button-size {
     position: relative;

@@ -11,6 +11,7 @@ export default function Routes({
   visibleCart,
   visibleSearch,
   setVisibleSearch,
+  setNumberScrool,
 }) {
   return (
     <Switch>
@@ -20,6 +21,7 @@ export default function Routes({
           setVisibleCart={setVisibleCart}
           visibleSearch={visibleSearch}
           setVisibleSearch={setVisibleSearch}
+          setNumberScrool={setNumberScrool}
         />
       </Route>
       <Route path="/products/:id">
@@ -28,6 +30,7 @@ export default function Routes({
           setVisibleCart={setVisibleCart}
           visibleSearch={visibleSearch}
           setVisibleSearch={setVisibleSearch}
+          setNumberScrool={setNumberScrool}
         />
       </Route>
     </Switch>
@@ -39,4 +42,5 @@ Routes.propTypes = {
   visibleCart: PropTypes.bool.isRequired,
   visibleSearch: PropTypes.bool.isRequired,
   setVisibleSearch: PropTypes.func.isRequired,
+  setNumberScrool: PropTypes.func.isRequired,
 };

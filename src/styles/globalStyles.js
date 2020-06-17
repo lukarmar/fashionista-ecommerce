@@ -22,6 +22,7 @@ export default createGlobalStyle`
     .visible-enter-active {
       right: 0;
       transition: right 400ms;
+
     }
     .visible-exit {
       right: 0;
@@ -55,6 +56,7 @@ export default createGlobalStyle`
   body {
     -webkit-font-smoothing: antialiased;
   }
+
 
   body, button, input {
     font: 62.5% 'Noto Sans SC',sans-serif;

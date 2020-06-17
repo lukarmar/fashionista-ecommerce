@@ -8,14 +8,19 @@ import { FiSearch, FiShoppingBag } from 'react-icons/fi';
 import logo from '../../assets/logo/logoLink.svg';
 import { Container, Content, Logo, BoxButtons } from './styles';
 
-export default function Header({ setVisibleCart, setVisibleSearch }) {
+export default function Header({
+  setVisibleCart,
+  setVisibleSearch,
+  numberScrool,
+}) {
   const amountProducts = useSelector((state) =>
     state.cart.reduce((sumTotal, item) => {
       return sumTotal + item.amount;
     }, 0)
   );
+
   return (
-    <Container>
+    <Container numberScrool={numberScrool}>
       <Content>
         <Link to="/">
           <Logo src={logo} alt="logo" />
@@ -47,4 +52,5 @@ export default function Header({ setVisibleCart, setVisibleSearch }) {
 Header.propTypes = {
   setVisibleCart: PropTypes.func.isRequired,
   setVisibleSearch: PropTypes.func.isRequired,
+  numberScrool: PropTypes.number.isRequired,
 };
