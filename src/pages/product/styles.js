@@ -13,7 +13,7 @@ export const BoxProducts = styled.div`
   display: flex;
   padding: 16px;
 
-  @media (max-width: 850px) {
+  @media (max-width: 1200px) {
     padding: 0;
   }
 `;

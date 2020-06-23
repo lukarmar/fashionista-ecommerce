@@ -5,7 +5,7 @@ export const Products = styled.div`
   display: flex;
   margin-top: 56px;
 
-  @media (max-width: 850px) {
+  @media (max-width: 1200px) {
     width: 100%;
     flex-direction: column;
   }
@@ -21,7 +21,7 @@ export const BoxImage = styled.figure`
     width: 100%;
   }
 
-  @media (max-width: 850px) {
+  @media (max-width: 1200px) {
     width: 100%;
   }
 `;
@@ -65,7 +65,7 @@ export const BoxDescriptionProduct = styled.div`
     text-align: center;
   }
 
-  @media (max-width: 850px) {
+  @media (max-width: 1200px) {
     padding: 0.5rem 16px;
     .product__description--button-add {
       width: 100%;

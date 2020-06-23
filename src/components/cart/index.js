@@ -74,7 +74,7 @@ export default function Cart({ setVisibleCart, visibleCart }) {
         ) : (
           <ProductCart>
             {products.map((product) => (
-              <ProductCartItem>
+              <ProductCartItem key={product.code_color}>
                 <DescriptioCart>
                   <BoxImage>
                     <img

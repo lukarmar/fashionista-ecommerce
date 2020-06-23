@@ -15,6 +15,7 @@ export default createGlobalStyle`
   html, body, #root {
     height: 100%;
     background: #f9f9f9;
+    scroll-behavior: smooth;
 
     .visible-enter {
       right: -50%;

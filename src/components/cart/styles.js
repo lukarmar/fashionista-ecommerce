@@ -4,8 +4,8 @@ export const Container = styled.div`
   position: fixed;
   width: 100%;
   height: 100%;
-  display: flex;
 
+  display: flex;
   flex-direction: row-reverse;
   z-index: 999;
 `;
@@ -17,13 +17,15 @@ export const CartContainer = styled.div`
   overflow-y: auto;
 
   background: #f9f9f9;
-  box-shadow: -1px 0px 2px 0px rgba(0, 0, 0, 1);
+  box-shadow: -1px 0px 70px 0px rgba(5, 5, 5, 0.1);
   display: flex;
 
   .cart__empty {
-    position: absolute;
-    top: 40%;
-    left: 28%;
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     color: #a7a7a7;
     font-size: 1rem;
   }
@@ -35,7 +37,7 @@ export const CartContainer = styled.div`
 
 export const Header = styled.div`
   position: fixed;
-  width: 100%;
+  width: 28%;
   background: #fff;
   padding: 14.5px 18px;
   display: flex;
@@ -52,17 +54,18 @@ export const Header = styled.div`
     border-radius: 50%;
   }
   .cart__length {
+    position: relative;
     flex: 1;
     font-size: 0.9rem;
     font-weight: 700;
+    margin-right: 70px;
     display: flex;
-    margin-left: 50px;
+    justify-content: center;
+    align-items: center;
   }
 
   @media (max-width: 1045px) {
-    .cart__length {
-      margin-left: 30%;
-    }
+    width: 100%;
   }
 `;
 
@@ -80,7 +83,7 @@ export const ProductCartItem = styled.div`
   margin-bottom: 10px;
 
   & + :last-child {
-    padding-bottom: 65px;
+    margin-bottom: 65px;
   }
 
   .product__description--button-remove {
@@ -190,11 +193,16 @@ export const Footer = styled.div`
   padding: 16px 28px;
   width: 100%;
   box-shadow: 0 -0.2rem 2rem 0 rgba(0, 0, 0, 0.08);
-  display: inline-block;
-  z-index: 21;
 
   strong {
     font-size: 0.9rem;
     color: #fff;
+  }
+
+  @media (max-width: 1045px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translateX(-35px);
   }
 `;

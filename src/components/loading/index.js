@@ -5,10 +5,13 @@ import { Container } from './styles';
 export default function Loading() {
   return (
     <Container>
-      <span>Carregando...</span>
-      <svg>
-        <circle cx="50" cy="50" r="50" />
-      </svg>
+      <strong>Carregando...</strong>
+      <div className="loader">
+        <span />
+        <span />
+        <span />
+        <span />
+      </div>
     </Container>
   );
 }

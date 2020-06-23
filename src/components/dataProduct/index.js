@@ -62,6 +62,7 @@ export default function DataProduct({ product }) {
             (dataSize) =>
               dataSize.available && (
                 <button
+                  key={dataSize.size}
                   type="button"
                   name={dataSize.size}
                   className={`product__button-size ${

@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import Ink from 'react-ink';
 import { FiSearch, FiShoppingBag } from 'react-icons/fi';
+
+import scrollToRef from '../../util/scrollToRef';
 
 import logo from '../../assets/logo/logoLink.svg';
 import { Container, Content, Logo, BoxButtons } from './styles';
@@ -18,11 +20,12 @@ export default function Header({
       return sumTotal + item.amount;
     }, 0)
   );
+  const linkRef = useRef(null);
 
   return (
-    <Container numberScrool={numberScrool}>
+    <Container ref={linkRef} numberScrool={numberScrool}>
       <Content>
-        <Link to="/">
+        <Link to="/" onClick={() => scrollToRef(linkRef)}>
           <Logo src={logo} alt="logo" />
         </Link>
         <BoxButtons>

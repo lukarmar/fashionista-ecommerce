@@ -15,7 +15,7 @@ export const SearchContainer = styled.div`
   width: 28%;
   height: 100%;
   background: #f9f9f9;
-  box-shadow: -1px 0px 2px 0px rgba(0, 0, 0, 1);
+  box-shadow: -1px 0px 70px 0px rgba(5, 5, 5, 0.1);
   overflow-y: auto;
   display: flex;
   flex-direction: column;
@@ -53,7 +53,10 @@ export const Header = styled.div`
 
   @media (max-width: 1045px) {
     .search__header--title {
-      margin-left: 28%;
+      margin-right: 70px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
   }
 `;

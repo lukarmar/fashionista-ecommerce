@@ -13,6 +13,10 @@ export const BoxProducts = styled.div`
   max-width: 1247px;
   display: flex;
   padding: 16px;
+
+  @media (max-width: 460px) {
+    padding: 8px;
+  }
 `;
 
 export const ProductList = styled.ul`
@@ -36,6 +40,8 @@ export const ProductList = styled.ul`
   }
 
   @media (max-width: 460px) {
+    margin-top: 78px;
+
     li {
       width: 100%;
     }
